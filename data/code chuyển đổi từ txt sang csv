@@ -1,0 +1,28 @@
+
+
+
+from google.colab import files
+
+# Mở hộp thoại để bạn tự chọn file txt từ máy
+uploaded = files.upload()
+import pandas as pd
+
+# Lấy tên file từ dict 'uploaded'
+file_path = list(uploaded.keys())[0]  # Lấy tên file bạn vừa chọn
+
+# Đọc dữ liệu bằng khoảng trắng
+df = pd.read_csv(file_path, sep='\s+', header=None)
+
+# Đặt tên cột CMAPSS (26 cột)
+column_names = ['unit_number', 'cycle'] + \
+               [f'op_setting_{i}' for i in range(1, 4)] + \
+               [f'sensor_{i}' for i in range(1, 22)]
+
+df.columns = column_names
+
+# Xuất ra file CSV
+df.to_csv('processed_data.csv', index=False)
+
+# Cho phép tải file CSV về máy
+files.download('processed_data.csv')
+
