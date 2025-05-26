@@ -1,0 +1,50 @@
+# 📦 Bước 1: Upload file CSV từ máy
+from google.colab import files
+import pandas as pd
+import numpy as np
+
+uploaded = files.upload()  # Mở hộp thoại chọn file CSV (ví dụ: processed_data.csv)
+
+# Lấy tên file CSV vừa upload
+file_path = list(uploaded.keys())[0]
+
+# 📥 Bước 2: Đọc file CSV
+df = pd.read_csv(file_path)
+print(f"✅ Đã nạp dữ liệu từ file: {file_path}")
+print(df.head())
+# ⚙️ Bước 3: Xử lý dữ liệu – tính rolling mean và z-score cho một số sensor
+target_sensors = ['sensor_2', 'sensor_3', 'sensor_7']
+window_size = 10
+
+# Tính rolling mean theo từng engine (unit_number)
+for sensor in target_sensors:
+    df[f'{sensor}_roll_mean'] = df.groupby('unit_number')[sensor].transform(
+        lambda x: x.rolling(window=window_size, min_periods=1).mean()
+    )
+    df[f'{sensor}_z'] = (df[sensor] - df[sensor].mean()) / df[sensor].std()
+# ⚙️ Bước 3: Xử lý dữ liệu – tính rolling mean và z-score cho một số sensor
+target_sensors = ['sensor_2', 'sensor_3', 'sensor_7']
+window_size = 10
+
+# Tính rolling mean theo từng engine (unit_number)
+for sensor in target_sensors:
+    df[f'{sensor}_roll_mean'] = df.groupby('unit_number')[sensor].transform(
+        lambda x: x.rolling(window=window_size, min_periods=1).mean()
+    )
+    df[f'{sensor}_z'] = (df[sensor] - df[sensor].mean()) / df[sensor].std()
+# 🚨 Bước 4: Flag anomaly nếu z-score vượt ngưỡng
+anomaly_conditions = (df['sensor_2_z'].abs() > 2.5) | \
+                     (df['sensor_3_z'].abs() > 2.5) | \
+                     (df['sensor_7_z'].abs() > 2.5)
+
+df['anomaly_flag'] = np.where(anomaly_conditions, 1, 0)
+
+# In ra số dòng bất thường
+print(f"⚠️ Số dòng bị flag bất thường: {df['anomaly_flag'].sum()}")
+# 💾 Bước 5: Xuất kết quả ra file CSV mới
+output_path = 'failure_flags.csv'
+df.to_csv(output_path, index=False)
+print(f"✅ Đã lưu file: {output_path}")
+
+# 📤 Bước 6: Tải file về máy
+files.download(output_path)
