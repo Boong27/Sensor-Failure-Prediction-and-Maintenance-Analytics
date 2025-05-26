@@ -20,7 +20,7 @@ The approach mimics real-world system health monitoring for logistics warehouses
 
 ## 📁 Dataset
 
-**Source:** [CMAPSS Jet Engine Sensor Dataset](https://www.kaggle.com/datasets/behrad3d/jet-engine-sensor-data)  
+**Source:** [CMAPSS Jet Engine Simulated Data](https://www.kaggle.com/datasets/palbha/cmapss-jet-engine-simulated-data ) 
 - Data from 100+ simulated jet engines  
 - Each engine contains time-series measurements from 21 sensors  
 - Includes engine ID, operating condition, and failure cycle
