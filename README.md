@@ -46,5 +46,66 @@ The approach mimics real-world system health monitoring for logistics warehouses
 
 ---
 
-## 🛠️ Folder Structure
+
+---
+
+## 📊 Key Analyses
+
+### 🔹 Sensor Drift Detection
+- Calculated rolling mean and std for each sensor  
+- Flagged segments that deviated more than 2.5σ from normal pattern  
+
+### 🔹 Mean Time to Failure Estimation
+- Aggregated engine life cycle per unit  
+- Computed average operational cycles before failure  
+
+### 🔹 Multi-Sensor Alert Logic
+- If 3+ sensors exceed thresholds within 10 cycles → early warning  
+- Implemented rule-based alert using Python logic  
+
+### 🔹 Failure Pattern Heatmap
+- Correlated sensor behaviors across units prior to failure  
+- Identified most predictive sensors based on late-cycle trends  
+
+---
+
+## 🧩 Use Cases
+
+| Department              | Use Case Description                                                                 |
+|-------------------------|----------------------------------------------------------------------------------------|
+| Logistics Operations    | Monitor conveyor/packing systems in warehouse for early malfunction detection        |
+| Maintenance Engineers   | Predict optimal servicing intervals based on real usage instead of fixed schedules   |
+| System Analysts         | Build internal alert systems for asset health                                        |
+| AI/IoT Engineers        | Prototype logic-based predictive systems for industrial IoT platforms                |
+
+---
+
+## 💼 Business Impact
+
+- ⚙️ Reduce unplanned downtime through early fault detection  
+- 💸 Lower repair costs via smarter maintenance planning  
+- 🔄 Increase uptime and throughput in warehouse operations  
+- 📈 Support transparency in system performance reporting  
+
+---
+
+## 🔭 Future Work
+
+- Integrate ML classifiers (Random Forest, XGBoost)  
+- Build Streamlit dashboard for real-time visualization  
+- Add failure mode classification (optional Kaggle labels)  
+- Explore real-time use with IoT pipeline & MQTT simulation  
+
+---
+
+## 📬 Contact
+
+**Nguyen Gia Khiem**  
+3rd-year BSc student – Electronic Physics Technology and Informatics  
+📍 Ho Chi Minh City, Vietnam  
+🔗 [github.com/Boong27](https://github.com/Boong27)  
+✉️ Giakhiem@gmail.com  
+
+---
+
 
