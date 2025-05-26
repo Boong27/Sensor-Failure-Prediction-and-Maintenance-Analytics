@@ -108,4 +108,5 @@ The approach mimics real-world system health monitoring for logistics warehouses
 
 ---
 
+![image](https://github.com/user-attachments/assets/a57ae425-19d9-4f50-8067-161cf1d22465)
 
